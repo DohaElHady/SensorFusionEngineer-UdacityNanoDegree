@@ -48,3 +48,26 @@
   
   **To:** add_definitions(-std=c++14)
 
+# Run and Visualize the Scene
+## 1. Control the Rendered Scene Elements
+- In environment.cpp:
+```cpp
+// RENDER OPTIONS
+bool renderScene = true;        // if renderScene is false, we will not render the highway or the cars
+bool renderPC = false;          // if renderPC is false, we will not render the point cloud
+bool renderPCRay = true;        // if renderPCRay is false, we will not render the rays from the lidar sensor
+bool renderSegCloud = false;    // if renderSegCloud is false, we will not render the segmented point cloud
+bool renderClusters = false;    // if renderClusters is false, we will not render the clustered point clouds
+bool renderBbox = false;        // if renderBbox is false, we will not render the bounding boxes around the clusters
+```
+- In WSL terminal:
+
+  _make && ./environment_
+
+- The 3D viewer should only shows then the scene and the rays upon the above configurations:
+
+  <img width="400" height="250" alt="image" src="https://github.com/user-attachments/assets/4979f59f-3c45-48ac-9463-4dc8eac4ee83" />
+
+  
+  
+
