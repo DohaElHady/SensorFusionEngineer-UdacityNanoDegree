@@ -68,6 +68,46 @@ bool renderBbox = false;        // if renderBbox is false, we will not render th
 
   <img width="400" height="250" alt="image" src="https://github.com/user-attachments/assets/4979f59f-3c45-48ac-9463-4dc8eac4ee83" />
 
-  
-  
+## 2. Control LiDAR Parameters
+- In lidar.h:
+a. Select the region of detection through minDistance and maxDistance 
+```cpp  
+// TODO:: Set minDistance to 5 (meters) to remove points from your vehicle's roof.
+minDistance = 5; // minimum distance to cast rays, points closer than this will not be added to the point cloud
+maxDistance = 50;
+```
+b. Add noise to the points so the lidar points are not exactly aligned over the circles which is more realistic
+```cpp  
+// TODO:: set sderr to 0.2 to get a more interesting pcd to simulate realistic lidar noise
+// standard deviation error for the point cloud (in meters)
+// used to add noise to the points so the lidar points are not exactly aligned over the circles which is more realistic 
+sderr = 0.2;
+```
+c. Increase layers for higher vertical resolution
+```cpp  
+// TODO:: increase number of layers to 8 to get higher resolution pcd
+int numLayers = 8; //number of layers in the vertical direction, more layers means more points in the vertical direction
+```
+
+at numLayers = 3
+
+<img width="500" height="300" alt="numLayers = 3" src="https://github.com/user-attachments/assets/a7957070-1042-4c25-ab6f-7b83a581dc36" />
+
+at numLayers = 8
+
+<img width="500" height="300" alt="numLayers = 8" src="https://github.com/user-attachments/assets/efee1f57-2045-43f6-bd60-18bacc683ac9" />
+
+d. Decrease angle difference for higher horizontal resolution
+```cpp  
+// TODO:: set to pi/64 to get higher resolution pcd
+double horizontalAngleInc = pi/64; // the angle increment in the horizontal direction, smaller means more points in the horizontal direction
+```
+
+at horizontalAngleInc = pi/6
+
+<img width="500" height="300" alt="horizontalAngleInc = pi/6" src="https://github.com/user-attachments/assets/efee1f57-2045-43f6-bd60-18bacc683ac9" />
+
+at horizontalAngleInc = pi/64
+
+<img width="500" height="300" alt="horizontalAngleInc = pi/64" src="https://github.com/user-attachments/assets/523032eb-c370-4e26-90d8-d33aa8e74cfa" />
 
