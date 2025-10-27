@@ -36,7 +36,8 @@
 
   _make && ./environment_
 - 3D viewer should open as shown below:
-  <img width="445" height="250" alt="image" src="https://github.com/user-attachments/assets/c72cf29e-48a7-4781-9c0a-86315ef65b58" />
+  <img width="445" height="250" alt="image" src="https://github.com/user-attachments/assets/03e8e6d2-6f63-411a-b006-6ef72cf26262" />
+
 
 ## 2. LiDAR RANSAC 2D
 - Error: PCL requires C++14 or above
