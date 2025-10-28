@@ -48,7 +48,7 @@
   
   **To:** add_definitions(-std=c++14)
 
-# Run and Visualize the Scene
+# LiDAR: Run and Visualize the Scene
 ## 1. Control the Rendered Scene Elements
 - In environment.cpp:
 ```cpp
@@ -110,4 +110,71 @@ at horizontalAngleInc = pi/6
 at horizontalAngleInc = pi/64
 
 <img width="500" height="300" alt="horizontalAngleInc = pi/64" src="https://github.com/user-attachments/assets/523032eb-c370-4e26-90d8-d33aa8e74cfa" />
+
+## 3. Activate LiDAR Point Cloud
+- Use scan function in environment.cpp to get the input cloud:
+```cpp
+pcl::PointCloud<pcl::PointXYZ>::Ptr inputCloud = lidar->scan();
+```
+
+- Render the point cloud
+```cpp
+// renderPointCloud(): takes the viewer, the point cloud, and a name for the point cloud 
+// we can have multiple point clouds in the viewer each with a unique name
+renderPointCloud(viewer, inputCloud, "inputCloud");
+```
+<img width="1000" height="450" alt="Point Cloud" src="https://github.com/user-attachments/assets/3488e206-a613-439e-9a52-3335103d1e1c" />
+
+## 4. Planner Segmentation using RANSAC
+This method aims to find the points which can fit together creating planes in the environment; named as inliers. 
+
+**Approach 1**
+- Create a point cloud processer in environment.cpp:
+```cpp
+// TODO:: Create point processor
+// Create a point cloud processer on the stack using the template class directly, or on the heap using a pointer to the template class
+// ProcessPointClouds<pcl::PointXYZ> is a template class that takes a point type as a template parameter
+ProcessPointClouds<pcl::PointXYZ> pointProcessor;
+```
+- Pass the scanned point cloud to it:
+```cpp
+std::pair<pcl::PointCloud<pcl::PointXYZ>::Ptr, pcl::PointCloud<pcl::PointXYZ>::Ptr> segmentResult = pointProcessor.SegmentPlane(inputCloud, 100, 0.2);
+```
+- Fill up the function _SegmentPlane_ in processPointClouds.cpp:  
+  a. Create segmentation object using [SACSegmentation](https://pointclouds.org/documentation/classpcl_1_1_s_a_c_segmentation.html)"
+  ```cpp
+  // Create the segmentation object
+  pcl::SACSegmentation<PointT> seg;
+  ```
+  b. Set up model parameters:
+  ```cpp
+  seg.setOptimizeCoefficients (true); // get best model
+  seg.setModelType (pcl::SACMODEL_PLANE); // we want to segment a plane
+  seg.setMethodType (pcl::SAC_RANSAC); // we want to use RANSAC to find the plane
+  seg.setMaxIterations (maxIterations);
+  seg.setDistanceThreshold (distanceThreshold);
+  ```
+  c. Set the input cloud and do the segmentation:
+  ```cpp
+  seg.setInputCloud (cloud);
+  seg.segment (*inliers, *coefficients);
+  ```
+  
+**Approach 2**
+- Implement RANSAC manually in _RansacPlane_ function in ransac2d.cpp:
+  - Create loop for RANSAC iterations
+  - Pick randomely 3 points to define a plane
+  - Fit plane to the 3 points
+  - Measure distance between every point and fitted plane
+  - If distance is smaller than threshold count it as inlier
+  - Return indicies of inliers from fitted plane with most inliers
+
+- Test _RansacPlane_ function as follows:
+ ```
+Go to src/quiz/ransac/build
+make && ./quizRansac
+```
+<img width="1000" height="450" alt="image" src="https://github.com/user-attachments/assets/52c796a4-02a7-4257-80ef-595f7ccf84c8" />
+
+
 
