@@ -170,11 +170,14 @@ std::pair<pcl::PointCloud<pcl::PointXYZ>::Ptr, pcl::PointCloud<pcl::PointXYZ>::P
   - Return indicies of inliers from fitted plane with most inliers
 
 - Test _RansacPlane_ function as follows:
- ```
-Go to src/quiz/ransac/build
-make && ./quizRansac
-```
-<img width="1000" height="450" alt="image" src="https://github.com/user-attachments/assets/52c796a4-02a7-4257-80ef-595f7ccf84c8" />
-
-
+  ```cpp
+  // You can change the max iteration and distance tolerance arguments for Ransac function from the line below in ransac2d.cpp
+  if(use3D)
+    inliers = RansacPlane(cloud, 100, 0.25);
+  ```
+  ```
+  Go to src/quiz/ransac/build
+  make && ./quizRansac
+  ```
+<img width="1000" height="450" alt="RANSAC RESULTS" src="https://github.com/user-attachments/assets/93a7a37c-7e51-4ad1-9560-48610e3b64be" />
 
