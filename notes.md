@@ -1,5 +1,6 @@
-# Installation Guidelines on Windows
-## 1. Global Environoment Setup
+# Section 1: LiDAR
+## Installation Guidelines on Windows
+### 1. Global Environoment Setup
 - Open command Prompt with admin access
 - Run: _dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart_
 - Run: _dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart_
@@ -15,13 +16,13 @@
   
   _sudo apt upgrade_
   
-  _git clone https://github.com/udacity/SFND_Lidar_Obstacle_Detection.git_
+  _git clone https://github.com/DohaElHady/SensorFusionEngineer-UdacityNanoDegree/_
   
   _sudo apt install cmake_
   
   _sudo apt install libpcl-dev_
   
-  _cd ~/SFND_Lidar_Obstacle_Detection_
+  _cd ~/SensorFusionEngineer-UdacityNanoDegree/SFND_Lidar_Obstacle_Detection_
   
   _mkdir build && cd build_
   
@@ -39,7 +40,7 @@
   <img width="445" height="250" alt="image" src="https://github.com/user-attachments/assets/03e8e6d2-6f63-411a-b006-6ef72cf26262" />
 
 
-## 2. LiDAR RANSAC 2D
+### 2. LiDAR RANSAC 2D
 - Error: PCL requires C++14 or above
   
   update cmakelist in ransac folder as follows:
@@ -48,8 +49,8 @@
   
   **To:** add_definitions(-std=c++14)
 
-# LiDAR: Run and Visualize the Scene
-## 1. Control the Rendered Scene Elements
+## LiDAR: Run and Visualize the Scene
+### 1. Control the Rendered Scene Elements
 - In environment.cpp:
 ```cpp
 // RENDER OPTIONS
@@ -68,7 +69,7 @@ bool renderBbox = false;        // if renderBbox is false, we will not render th
 
   <img width="400" height="250" alt="image" src="https://github.com/user-attachments/assets/4979f59f-3c45-48ac-9463-4dc8eac4ee83" />
 
-## 2. Control LiDAR Parameters
+### 2. Control LiDAR Parameters
 - In lidar.h:
 a. Select the region of detection through minDistance and maxDistance 
 ```cpp  
@@ -111,7 +112,7 @@ at horizontalAngleInc = pi/64
 
 <img width="500" height="300" alt="horizontalAngleInc = pi/64" src="https://github.com/user-attachments/assets/523032eb-c370-4e26-90d8-d33aa8e74cfa" />
 
-## 3. Activate LiDAR Point Cloud
+### 3. Activate LiDAR Point Cloud
 - Use scan function in environment.cpp to get the input cloud:
 ```cpp
 pcl::PointCloud<pcl::PointXYZ>::Ptr inputCloud = lidar->scan();
@@ -125,7 +126,7 @@ renderPointCloud(viewer, inputCloud, "inputCloud");
 ```
 <img width="1000" height="450" alt="Point Cloud" src="https://github.com/user-attachments/assets/3488e206-a613-439e-9a52-3335103d1e1c" />
 
-## 4. Planner Segmentation using RANSAC
+### 4. Planner Segmentation using RANSAC
 This method aims to find the points which can fit together creating planes in the environment; named as inliers. 
 
 **Approach 1**
