@@ -52,6 +52,7 @@
 ### 3. LiDAR TTC
 - Error WSL not connected to network: _sudo nano /etc/resolv.conf_ >> add this line:  _nameserver 8.8.8.8 _
 - Install openCV: [Guide](https://github.com/Eemilp/install-opencv-on-wsl)
+  
 ## LiDAR: Run and Visualize the Scene
 ### 1. Control the Rendered Scene Elements
 - In environment.cpp:
@@ -186,7 +187,10 @@ std::pair<pcl::PointCloud<pcl::PointXYZ>::Ptr, pcl::PointCloud<pcl::PointXYZ>::P
 <img width="1000" height="450" alt="RANSAC RESULTS" src="https://github.com/user-attachments/assets/93a7a37c-7e51-4ad1-9560-48610e3b64be" />
 
 ## LiDAR TTC
-_cd TTC_LIDAR_
- _mkdir build && cd build_
-  _cmake .._
+- Run the following: 
+  - _cd Lidar_TTC_
+  - _mkdir build && cd build_
+  -  _cmake .._
+  -  _make_
+  -  _./compute_ttc_lidar_
 
