@@ -1,0 +1,5 @@
+/home/doha-elhady/SensFuse/Camera/gradient_filtering/build/CMakeFiles/gaussian_smoothing.dir
+/home/doha-elhady/SensFuse/Camera/gradient_filtering/build/CMakeFiles/gradient_sobel.dir
+/home/doha-elhady/SensFuse/Camera/gradient_filtering/build/CMakeFiles/magnitude_sobel.dir
+/home/doha-elhady/SensFuse/Camera/gradient_filtering/build/CMakeFiles/edit_cache.dir
+/home/doha-elhady/SensFuse/Camera/gradient_filtering/build/CMakeFiles/rebuild_cache.dir
