@@ -30,4 +30,5 @@
     <p align="center"><img width="700" height="350" alt="image" src="https://github.com/user-attachments/assets/251bd022-b5ad-49b9-b011-9d2dec1a3492" /></p>
   - Based on the image gradients in both x and y, gradient magnitude and directions can be calculated:
     <p align="center"><img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/572a4603-b0bc-4dce-9737-19dbc24c10b6" /> <img width="400" height="322" alt="image" src="https://github.com/user-attachments/assets/46132502-36a5-46df-8a29-60d78a9821c6" /></p>
-  
+## Key Points Extraction
+- **Harris Corner Detection**: 
